@@ -18,9 +18,10 @@ public class Reference04 {
 		String[] arr4 = {"A", "B", "C"};
 		
 		System.out.println(arr3 == arr4); // 주소가 다름
-		System.out.println(arr3[0] == arr4[0]); // 값 비교, 같음
-		System.out.println(arr3[0].equals(arr4[0])); // 값 비교 할 때는 eqauls를 사용하자!
+		//System.out.println(arr3[0] == arr4[0]); // 값 비교, 같음
+		System.out.println(arr3[0].equals(arr4[0])); // String 값 비교 할 때는 eqauls를 사용하자!
 		
+	    
 		
 			
 	}

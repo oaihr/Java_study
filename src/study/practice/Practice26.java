@@ -5,7 +5,9 @@ import java.util.Scanner;
 public class Practice26 {
 
 	public static void main(String[] args) {
-		basicv3();
+//		basicv3();
+//		level1();
+		level2();
 	}
 	
 	public static void basicv1() {
@@ -60,6 +62,9 @@ public class Practice26 {
 	}
 	
 	public static void basicv2() {
+		
+				//내가 만듬
+		
 				// 100층 짜리 빌딩 
 		
 				// 1층에서 사람들이 탑승, 각자 내릴 층 버튼을 누른다
@@ -205,6 +210,80 @@ public class Practice26 {
 		}
 
 	}	
-
-
+	
+	public static void level1() {
+		Scanner scanner = new Scanner(System.in);
+		while(true) {
+			System.out.print("탑승 인원 수: ");
+			int count = scanner.nextInt();
+			
+			int[] floorArr = new int[count];
+			
+			System.out.print("층수 입력: ");	
+			for(int i=0; i<floorArr.length; i++) {
+				floorArr[i] = scanner.nextInt();
+			}
+			
+			System.out.print("최대 멈춤 횟수 입력: ");	
+			int maxStopCount = scanner.nextInt();
+			
+			int maxFloor = 0;
+			for(int i=0; i<floorArr.length; i++) {
+				if(maxFloor<floorArr[i]) {	
+					maxFloor = floorArr[i];
+				}
+			}
+			
+			int floor = 1;
+			int flow = 1;   
+			int stopCount = 0;
+				
+			while(true) {
+				
+				System.out.println(floor+"층");			
+				
+				
+				if(flow == 1) {  
+					for (int j=0; j<floorArr.length; j++) {
+						if(floor == floorArr[j] && flow == 1) {
+							System.out.println("==도착==");
+							stopCount++;
+						}
+					}
+				}
+				
+				if(stopCount == maxStopCount) {
+					System.out.println("===점검 중===");
+					break;
+				}
+				
+				
+				if(floor >= maxFloor)	
+					flow = -1;
+					
+				if(floor <= 1 && flow == -1)  
+					break;				
+				
+				floor += flow;
+			}
+		}
+	}
+	
+	public static void level2() {
+		
+//		- 레벨 2
+//		엘리베이터는 태울 수 있는 총 중량 또는 정원이 있습니다.
+//		탑승 인원을 순서대로 측정하되, 총 무게를 넘거나 정원이 넘으면 그 뒤에 인원을 엘리베이터에 태우지 않습니다.
+//		(총 중량이 200kg 일 경우, 탑승 인원 순서대로 80, 120, 40 이면 가장 마지막 사람은 태우지 않음)
+//
+//		+ 엘리베이터의 총 무게 및 정원은 사용자 입력을 받습니다.
+//		+ 탑승 인원 및 각 탑승 인원의 내릴 층은 랜덤으로 추출합니다. (사용자 입력에서 변경)
+//		+ 각 탑승 인원의 무게도 랜덤으로 추출합니다. (40 kg ~ 150 kg)
+		
+		// 먼저 탑승 인원 밑 내릴층을 랜덤으로 뽑은 후에 총무게 정원 처리
+		
+	
+		
+	}
+	
 }

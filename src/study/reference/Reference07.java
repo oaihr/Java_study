@@ -11,8 +11,8 @@ public class Reference07 {
 		String day2 = "FRIDAY";
 				
 		String today = "FRIDAY";	// 사용자가 입력한 값
-						//Friday
-						//FRODAY
+						//Friday	잘못입력할수있음
+						//FRODAY   
 		
 		
 		if(today.equals(day1)) {
@@ -26,7 +26,6 @@ public class Reference07 {
 		
 		// 붕어빵 토핑 : ppat, cream, pizza
 		String topping = "pizza";
-		
 		
 		
 		Week day3 = Week.MON;	// Enum 이용

@@ -281,9 +281,151 @@ public class Practice26 {
 //		+ 각 탑승 인원의 무게도 랜덤으로 추출합니다. (40 kg ~ 150 kg)
 		
 		// 먼저 탑승 인원 밑 내릴층을 랜덤으로 뽑은 후에 총무게 정원 처리
+		Scanner scanner = new Scanner(System.in);
 		
-	
-		
-	}
+			
+			// 탑승인원 입력
+//			System.out.print("탑승 인원 수: ");
+//			int count = scanner.nextInt();
+			
+			// 탑승인원 랜덤
+			int personCount = (int)(Math.random()*20)+1;	
+			System.out.println("탑승인원 : "+personCount);
+			
+			int[] floorArr = new int[personCount];
+			System.out.print("목적지 층수 목록(2~100층) : ");	
+			for(int i=0; i<floorArr.length; i++) {
+				floorArr[i] = (int)(Math.random()*99)+2;	// 층수 랜덤 추출
+				System.out.print(floorArr[i]+" ");
+			}
+			
+			System.out.println();
+			int[] weightArr = new int[personCount];
+			System.out.print("탑승객 몸무게 목록(40~150kg) : ");
+			for(int i=0; i<weightArr.length; i++) {
+				weightArr[i] = (int)(Math.random()*111)+40;	// 몸무게 랜덤 추출
+				System.out.print(weightArr[i]+" ");
+			}
+			
+			System.out.println();
+			System.out.print("최대 멈춤 횟수 입력: ");	
+			int maxStopCount = scanner.nextInt();
+			
+			System.out.print("엘리베이터 제한 무게(kg) 입력 : ");
+			int maxWeight = scanner.nextInt();			
+			System.out.print("엘리베이터 탑승 정원 입력 : ");
+			int maxPersonCount = scanner.nextInt();
+			
+			// 실제 탑승 인원 수 check
+			
+			// 1) 탑승 정원 만큼
+			// 2) 탑승객의 무게 합산 <= 엘리베이터 총 무게
+			int sumWeight = 0; // 승객 무게 합
+			int realPersonCount = 0; // 실제 탑승 인원
+			
+			/*
+			for(int i=0; i<weightArr.length; i++) {	//최대인원or최대무게 조건이 반복체크되면서 '실제탑승인원'이정해짐
+				
+				//최대 인원 넘는지 체크
+				//i: 0 1 2 "3"....   
+				//maxPesonCount: 3
+				if(i >= maxPersonCount) {
+					realPersonCount = i;
+					break;
+				}
+				
+				// 최대무게 넘는지 체크
+				if(sumWeight + weightArr[i] > maxWeight) {
+					realPersonCount = i;
+					break;
+				}else {
+					sumWeight = sumWeight + weightArr[i];
+				}
+					
+			}			
+			*/
+			
+			/*
+			// 탑승정원 -> 무게 필터링
+			// weightArr.length > maxPersonCount
+			
+			int iMaxCount = (weightArr.length > maxPersonCount) ? maxPersonCount : weightArr.length;
+			
+			
+			for(int i=0; i<iMaxCount; i++) {
+				sumWeight = sumWeight + weightArr[i]; // 몸무게 순서대로 합산 
+				
+				if(sumWeight > maxWeight) 	// 몸무게 합이 최대 제한 넘어가는지 체크
+					break;
+				
+				realPersonCount++;	// 실제 탑승 인원 계산
+			}
+			*/
+			
+			//무게 먼저 필터링 -> 탑승정원 적용
+			for(int i=0; i<weightArr.length; i++) {
+				sumWeight = sumWeight + weightArr[i]; // 몸무게 순서대로 합산 
+				
+				if(sumWeight > maxWeight) 	// 몸무게 합이 최대 제한 넘어가는지 체크
+					break;
+				
+				realPersonCount++;	// 실제 탑승 인원 계산
+			}
+			
+			//실제 탑승 인원과 최대 정원 비교 해서 작은 값을 실제 탑승 인원에 대입
+			realPersonCount = (realPersonCount > maxPersonCount) ? maxPersonCount : realPersonCount;
+			
+			System.out.println("최종 탑승 인원 : "+realPersonCount);
+//-----------------------------------------------------------------------------------
+			// 1) 실제 탑승인원 -> 적용
+			// 2) floorArr를 실제 작동될 범위로 새로 지정
+			
+			// 목적지 층 중 최대값 구하기
+			int maxFloor = 0;	
+//			for(int i=0; i<floorArr.length; i++) {
+			for(int i=0; i<realPersonCount; i++) {
+				if(maxFloor<floorArr[i]) {	
+					maxFloor = floorArr[i];
+				}
+			}
+			
+			int floor = 1;
+			int flow = 1;   
+			int stopCount = 0;
+			
+			
+			while (true) {
+
+				if (realPersonCount < 1) {
+					System.out.println("=====탑승 인원이 없습니다=====");
+					break;
+				}
+				System.out.println(floor + "층");
+
+				// 내리는 층 도착 출력
+				if (flow == 1) {
+					// for (int j=0; j<floorArr.length; j++) {
+					for (int j = 0; j < realPersonCount; j++) {
+						if (floor == floorArr[j] && flow == 1) {
+							System.out.println("==도착==");
+							stopCount++;
+						}
+					}
+				}
+
+				if (stopCount == maxStopCount) {
+					System.out.println("===점검 중===");
+					break;
+				}
+
+				if (floor >= maxFloor)
+					flow = -1;
+
+				if (floor <= 1 && flow == -1)
+					break;
+
+				floor += flow;
+			}
+		}
 	
 }

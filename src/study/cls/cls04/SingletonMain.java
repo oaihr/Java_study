@@ -17,6 +17,7 @@ public class SingletonMain {
 		
 		Singleton st2 = Singleton.getInstance();
 		Singleton st3 = Singleton.getInstance();
+		//singleton 객체 하나만을 참조함 
 		
 	}
 

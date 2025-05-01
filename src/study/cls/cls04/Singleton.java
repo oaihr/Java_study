@@ -6,8 +6,7 @@ public class Singleton {
 	private static Singleton singleton = new Singleton();
 	
 	//외부에서 생성 방지
-	private Singleton() {
-		
+	private Singleton() {		
 	}
 	
 	//리턴타입    

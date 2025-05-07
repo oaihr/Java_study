@@ -22,12 +22,21 @@ public class Solution {
 			}
 			
 			int maxValue = 0;
+			int maxKey = 0;
 			for(int key : map.keySet()) {				
-				if(map.get(key) > maxValue)
+				if(map.get(key) > maxValue) {
 					maxValue = map.get(key);
+					maxKey = key;
+				}
 			}
 			
-			return maxValue;
+			int countIfSameValue = 0;
+			for(int value : map.values()) {
+				if(value == maxValue)
+					countIfSameValue++;
+			}
+			
+			return (countIfSameValue >1 )? -1 : maxKey;
 		}
 		
 		

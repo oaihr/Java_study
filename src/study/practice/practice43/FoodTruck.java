@@ -66,7 +66,7 @@ public class FoodTruck {
 			System.out.println("1.메뉴보기 2.주문하기 3.재고관리 4.마감하기");
 			System.out.print(">>입력: ");
 			menu = scanner.nextInt();
-			if(menu<1 && menu>4) {
+			if(menu<1 || menu>4) {
 				System.out.println("잘못된 입력입니다.");
 				System.out.println("메뉴(1~4) 중에 선택하세요.");
 			}else {break;}

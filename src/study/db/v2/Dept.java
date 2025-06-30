@@ -5,6 +5,8 @@ package study.db.v2;
 //DTO (Data Transfer Object)
 public class Dept {	//DeptDTO 
 	
+	
+
 	int deptno;
 	String dname;
 	String loc;
@@ -16,7 +18,12 @@ public class Dept {	//DeptDTO
 		this.dname = dname;
 		this.loc = loc;
 	}
-
+	
+	@Override
+	public String toString() {
+		return "Dept [deptno=" + deptno + ", dname=" + dname + ", loc=" + loc + "]";
+	}
+	
 	public int getDeptno() {
 		return deptno;
 	}

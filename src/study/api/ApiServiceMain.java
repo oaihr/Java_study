@@ -12,18 +12,28 @@ public class ApiServiceMain {
 		// api service 통해서 데이터를 획득 -> dto
 		//MidTaDTO mtDTO = mService.findMidTa("202507030600", "11C20301");	//천안
 		//MidTaDTO mtDTO = mService.findMidTa("202507030600", "11B10101");	//서울
-		MidTaDTO mtDTO = mService.findMidTa("202507030600", "11B20201");	//인천
+		/*
+		 * MidTaDTO mtDTO = mService.findMidTa("202507030600", "11B20201"); //인천
+		 * 
+		 * System.out.println(mtDTO);
+		 * 
+		 * // dto 객체를 DB에 저장 MidFcstDAO mfDAO = new MidFcstDAO();
+		 * 
+		 * int result = mfDAO.saveMidTa(mtDTO); if(result > 0) {
+		 * System.out.println("저장 성공!"); }
+		 */
 		
-		System.out.println(mtDTO);
+		//미세먼지
+		ArpltnInfoService aService = new ArpltnInfoService();
+		MinuDustWeekDTO mdwDto = aService.getMinuDustWeek();
+		System.out.println(mdwDto);
+		// ArpltnDAO
 		
-		// dto 객체를 DB에 저장
-		MidFcstDAO mfDAO = new MidFcstDAO();
-		
-		int result = mfDAO.saveMidTa(mtDTO);
+		ArpltnDAO arpltnDAO = new ArpltnDAO();
+		int result = arpltnDAO.saveMinuDustWeek(mdwDto);
 		if(result > 0) {
-			System.out.println("저장 성공!");
+			System.out.println("저장 성공!!");
 		}
-		
 	}
 
 }
